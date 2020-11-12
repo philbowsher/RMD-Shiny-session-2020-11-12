@@ -1,0 +1,26 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(qualtRics)
+library(ggplot2)
+```
+
+
+```{r}
+mysurvey <- read_survey("2020 Vista Post-Course Survey.csv")
+mysurvey 
+
+```
+```{r}
+ggplot(mysurvey) +
+ aes(x = instructor1, y = Q4) +
+ geom_boxplot(fill = "#0c4c8a") +
+ theme_minimal()
+```
+
+
+

@@ -1,0 +1,36 @@
+---
+title: "Course Feedback"
+output: html_document
+---
+
+## Instructor: Gruber
+
+```{r include=FALSE}
+library(tidyverse)
+library(qualtRics)
+library(ggplot2)
+```
+
+```{r include=FALSE}
+mysurvey <- read_survey("2020 Vista Post-Course Survey.csv") %>% filter(instructor1 ==  'Gruber')
+
+```
+
+**Course(s) Taught:** `r unique(mysurvey$course_title)`
+
+**Number of Students:** `r n_distinct(mysurvey$ResponseId)`
+
+```{r}
+mysurvey %>% select(Q4) %>% 
+  ggplot()+
+  geom_bar(aes(x=Q4))+
+  ggtitle('Overall, how satisfied or unsatisfied were you with the Vista Course?')
+```
+
+```{r}
+mysurvey %>% select(Q7_Content) %>% 
+  ggplot()+
+  geom_bar(aes(x=Q7_Content))+
+  xlim(0,5)+
+  ggtitle('How satisfied or unsatisfied were you with the *content* of the Vista Course?')
+```
